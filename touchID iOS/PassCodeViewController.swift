@@ -36,7 +36,20 @@ class PassCodeViewController: UIViewController {
                 self.indicatorIcon.arrangedSubviews[_indicatorIcon.count].backgroundColor = .gray
             })
             if _indicatorIcon.count == indicatorIcon.arrangedSubviews.count - 1 {
-                print(passPhrase)
+                if let setting = isSetting, setting == true {
+                    let alert = UIAlertController(title: "Save Passcode", message: "Do you want to save the passcode?", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { _ in
+                        let _ = self.passPhraseAction()
+                    }))
+                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+                        self.dismiss(animated: true, completion: {})
+                    }))
+                    self.present(alert, animated: true, completion: {
+                        self.passPhrase = ""
+                    })
+                }
+            } else {
+                return
             }
         } else {
             return
@@ -54,6 +67,18 @@ class PassCodeViewController: UIViewController {
         }
     }
     
+    func passPhraseAction() -> Bool {
+        let userDef = UserDefaults()
+        switch userDef.value(forKey: "passPhrase") {
+        case nil:
+            userDef.set(passPhrase, forKey: "passPhrase")
+            return true
+        case let value as String where value == passPhrase:
+            return true
+        default:
+            return false
+        }
+    }
 
 }
 

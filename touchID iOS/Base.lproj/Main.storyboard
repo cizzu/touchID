@@ -405,7 +405,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jtM-ph-7St" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="j66-gh-Mh0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="993" y="124"/>
+            <point key="canvasLocation" x="980" y="85"/>
         </scene>
     </scenes>
 </document>
